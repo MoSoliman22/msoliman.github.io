@@ -1,62 +1,114 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Soliman | Portfolio</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1a1a; color: #ffffff; margin: 0; padding: 20px; line-height: 1.6; text-align: center; }
-        .container { max-width: 800px; margin: 0 auto; background: #262626; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        h1 { color: #007acc; font-size: 2.5rem; margin-bottom: 10px; }
-        .title { font-size: 1.2rem; color: #a0a0a0; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
-        .section { margin-bottom: 40px; text-align: left; }
-        h2 { border-bottom: 2px solid #007acc; padding-bottom: 5px; color: #007acc; }
-        .skills-badge { display: inline-block; background: #333; padding: 5px 12px; margin: 5px; border-radius: 20px; border: 1px solid #444; font-size: 0.9rem; }
-        .project-card { background: #333; padding: 15px; margin-bottom: 15px; border-radius: 6px; border-left: 5px solid #007acc; }
-        .project-card h3 { margin-top: 0; color: #fff; }
-        a { color: #007acc; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mohamed Soliman — Software Developer and Automation Specialist.">
+  <title>Mohamed Soliman | Software Developer</title>
+  <style>
+    :root { --ink:#10213b; --muted:#5e6b7e; --paper:#f7f9fc; --card:#fff; --line:#dde4ee; --navy:#0b1f3a; --blue:#246bfe; --cyan:#29b6d9; --shadow:0 18px 50px rgba(18,39,74,.10); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    a { color:inherit; }
+    .shell { width:min(1120px, calc(100% - 40px)); margin:auto; }
+    .nav { position:sticky; top:0; z-index:10; backdrop-filter:blur(14px); background:rgba(247,249,252,.88); border-bottom:1px solid rgba(221,228,238,.85); }
+    .nav-inner { height:74px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; gap:11px; align-items:center; font-weight:800; text-decoration:none; letter-spacing:-.02em; }
+    .brand-mark { display:grid; place-items:center; width:34px; height:34px; border-radius:10px; color:#fff; background:linear-gradient(135deg,var(--blue),var(--cyan)); font-size:.85rem; }
+    .nav-links { display:flex; align-items:center; gap:24px; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:.93rem; font-weight:650; }
+    .nav-links a:hover { color:var(--blue); }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:9px; border:1px solid transparent; border-radius:9px; padding:12px 17px; background:var(--blue); color:#fff; font-weight:750; text-decoration:none; transition:transform .18s, box-shadow .18s, background .18s; }
+    .button:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(36,107,254,.25); background:#1157e9; }
+    .button.ghost { color:var(--ink); background:#fff; border-color:var(--line); }
+    .button.ghost:hover { box-shadow:0 10px 24px rgba(18,39,74,.10); background:#fff; }
+    .hero { overflow:hidden; position:relative; padding:100px 0 82px; background:var(--navy); color:#fff; }
+    .hero:before, .hero:after { content:""; position:absolute; border-radius:50%; filter:blur(1px); opacity:.55; }
+    .hero:before { width:540px; height:540px; right:-180px; top:-260px; background:radial-gradient(circle, #2278ff 0, rgba(34,120,255,0) 70%); }
+    .hero:after { width:480px; height:480px; left:-210px; bottom:-360px; background:radial-gradient(circle, #10bdcf 0, rgba(16,189,207,0) 70%); }
+    .hero-grid { position:relative; display:grid; grid-template-columns:1.3fr .7fr; gap:60px; align-items:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; margin:0 0 20px; color:#b9d9ff; text-transform:uppercase; letter-spacing:.13em; font-weight:750; font-size:.74rem; }
+    .eyebrow:before { content:""; width:8px; height:8px; border-radius:50%; background:#62dfb2; box-shadow:0 0 0 4px rgba(98,223,178,.13); }
+    h1 { margin:0; max-width:720px; font-size:clamp(2.65rem,5.3vw,4.75rem); line-height:1.04; letter-spacing:-.055em; }
+    .lead { max-width:650px; margin:25px 0 32px; color:#c3d0e2; font-size:1.16rem; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .hero .ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,.3); }
+    .hero .ghost:hover { background:rgba(255,255,255,.1); }
+    .profile-card { padding:28px; border:1px solid rgba(255,255,255,.15); border-radius:18px; background:rgba(255,255,255,.07); box-shadow:0 22px 45px rgba(0,0,0,.16); }
+    .initials { display:grid; place-items:center; width:72px; height:72px; margin-bottom:20px; border-radius:18px; background:linear-gradient(145deg,#fff,#c4dcff); color:#164485; font-size:1.5rem; font-weight:850; }
+    .profile-card h2 { margin:0; font-size:1.15rem; }
+    .profile-card p { margin:5px 0 20px; color:#c3d0e2; font-size:.93rem; }
+    .mini-list { display:grid; gap:13px; padding:0; margin:0; list-style:none; }
+    .mini-list li { display:flex; align-items:center; gap:11px; color:#d5e0f0; font-size:.9rem; }
+    .mini-list span { display:grid; place-items:center; flex:none; width:25px; height:25px; border-radius:7px; background:rgba(98,223,178,.15); color:#72e8bb; }
+    section { padding:92px 0; }
+    .section-label { color:var(--blue); text-transform:uppercase; letter-spacing:.13em; font-size:.74rem; font-weight:800; }
+    .section-heading { max-width:630px; margin:10px 0 18px; font-size:clamp(2rem,3.8vw,3rem); line-height:1.13; letter-spacing:-.045em; }
+    .section-copy { max-width:660px; margin:0; color:var(--muted); font-size:1.05rem; }
+    .about { display:grid; grid-template-columns:.9fr 1.1fr; gap:85px; align-items:start; }
+    .facts { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; margin-top:32px; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:var(--line); }
+    .fact { padding:19px; background:#fff; }
+    .fact b { display:block; margin-bottom:2px; font-size:1.08rem; }
+    .fact span { color:var(--muted); font-size:.85rem; }
+    .quote { padding:32px; border-radius:16px; background:#eaf1ff; border:1px solid #d6e4ff; }
+    .quote p { margin:0; color:#24426e; font-size:1.22rem; font-weight:650; line-height:1.55; letter-spacing:-.015em; }
+    .quote footer { margin-top:18px; color:#52709c; font-size:.88rem; font-weight:700; }
+    .skills-wrap { background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .skill-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:38px; }
+    .skill { padding:21px; border:1px solid var(--line); border-radius:13px; background:#fff; }
+    .skill-icon { display:grid; place-items:center; width:38px; height:38px; margin-bottom:15px; border-radius:10px; background:#eaf1ff; color:var(--blue); font-weight:850; }
+    .skill h3 { margin:0 0 5px; font-size:1rem; }
+    .skill p { margin:0; color:var(--muted); font-size:.88rem; }
+    .projects-head { display:flex; justify-content:space-between; gap:30px; align-items:end; }
+    .projects { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:38px; }
+    .project { display:flex; min-height:300px; flex-direction:column; padding:30px; border-radius:16px; background:var(--card); border:1px solid var(--line); box-shadow:0 8px 22px rgba(18,39,74,.04); transition:transform .2s, box-shadow .2s; }
+    .project:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
+    .project-number { color:#8ca0bb; font-size:.78rem; font-weight:850; letter-spacing:.12em; }
+    .project h3 { margin:34px 0 10px; font-size:1.45rem; letter-spacing:-.03em; }
+    .project p { margin:0; color:var(--muted); }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:25px; }
+    .tag { padding:5px 10px; border-radius:99px; background:#edf2f8; color:#4c5e76; font-size:.76rem; font-weight:700; }
+    .contact { padding:78px 0; background:var(--navy); color:#fff; }
+    .contact-grid { display:flex; align-items:center; justify-content:space-between; gap:32px; }
+    .contact h2 { max-width:610px; margin:10px 0 0; font-size:clamp(2rem,4vw,3.2rem); line-height:1.13; letter-spacing:-.05em; }
+    .contact .section-label { color:#84b5ff; }
+    .contact-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .contact .ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,.3); }
+    footer { padding:25px 0; color:#708096; background:#07172d; font-size:.86rem; }
+    .footer-inner { display:flex; justify-content:space-between; gap:20px; }
+    @media (max-width:760px) { .nav-links { display:none; } .hero { padding:72px 0 64px; } .hero-grid, .about { grid-template-columns:1fr; gap:38px; } .profile-card { max-width:420px; } section { padding:68px 0; } .skill-grid, .projects { grid-template-columns:1fr; } .projects-head, .contact-grid, .footer-inner { align-items:flex-start; flex-direction:column; } .contact-actions { width:100%; } .contact-actions .button { flex:1; } }
+    @media (max-width:420px) { .shell { width:min(100% - 28px,1120px); } .facts { grid-template-columns:1fr; } }
+  </style>
 </head>
 <body>
-
-<div class="container">
-    <h1>Mohamed Soliman</h1>
-    <div class="title">Software Developer & Automation Specialist</div>
-
-    <div class="section">
-        <h2>About Me</h2>
-        <p>Results-driven Software Developer with hands-on experience in SQL database development, Oracle APEX applications, and local environment setups. Specialized in building advanced automated workflows and optimizing technical environments using modern DevOps tools.</p>
+  <header class="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark">MS</span> Mohamed Soliman</a>
+      <nav class="nav-links" aria-label="Primary navigation"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#contact">Contact</a></nav>
+      <a class="button" href="mailto:mohamedsolimanahmed97@gmail.com">Let's talk</a>
     </div>
-
-    <div class="section">
-        <h2>Technical Skills</h2>
-        <div class="skills-badge">Oracle APEX (Classic Reports & Queries)</div>
-        <div class="skills-badge">SQL & Database Development</div>
-        <div class="skills-badge">Workflow Automation (n8n)</div>
-        <div class="skills-badge">Docker & Containers</div>
-        <div class="skills-badge">Python Nodes</div>
-        <div class="skills-badge">Local Tunnels & Network Configuration</div>
-    </div>
-
-    <div class="section">
-        <h2>Featured Projects</h2>
-        <div class="project-card">
-            <h3>Automated Webhook Systems</h3>
-            <p>Designed and deployed secure end-to-end automation pipelines using n8n hosted inside Docker environments, successfully routing traffic and handling real-time data payloads through local secure tunnels.</p>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Software Developer &amp; Automation Specialist</p>
+          <h1>Building dependable systems that make work flow better.</h1>
+          <p class="lead">I design database-driven applications and practical automation workflows—combining SQL, Oracle APEX, n8n, and Docker to turn complex operations into clear, efficient experiences.</p>
+          <div class="hero-actions"><a class="button" href="#projects">View selected work <span aria-hidden="true">↓</span></a><a class="button ghost" href="https://github.com/MoSoliman22" target="_blank" rel="noopener">GitHub profile ↗</a></div>
         </div>
-        <div class="project-card">
-            <h3>Oracle APEX & SQL Optimization</h3>
-            <p>Developed responsive Classic Reports and optimized complex database queries to ensure fast data retrieval and seamless user experience within corporate systems.</p>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Connect With Me</h2>
-        <p>📩 Email: <a href="mailto:mohamedsolimanahmed97@gmail.com">mohamedsolimanahmed97@gmail.com</a></p>
-        <p>🔗 GitHub Profile: <a href="https://github.com/MoSoliman22" target="_blank">github.com/MoSoliman22</a></p>
-    </div>
-</div>
-
+        <aside class="profile-card" aria-label="Professional summary">
+          <div class="initials">MS</div><h2>Mohamed Soliman</h2><p>Based in Egypt · Open to opportunities</p>
+          <ul class="mini-list"><li><span>✓</span> Database development &amp; SQL</li><li><span>✓</span> Business workflow automation</li><li><span>✓</span> Local-first DevOps environments</li></ul>
+        </aside>
+      </div>
+    </section>
+    <section id="about"><div class="shell about"><div><p class="section-label">About me</p><h2 class="section-heading">A practical developer with an eye on the full system.</h2><p class="section-copy">I build reliable technical solutions from the data layer through to the end-user experience. My focus is on clear architecture, maintainable workflows, and improvements that genuinely save people time.</p><div class="facts"><div class="fact"><b>Oracle APEX</b><span>Application development</span></div><div class="fact"><b>SQL</b><span>Query &amp; data optimization</span></div><div class="fact"><b>n8n</b><span>Workflow automation</span></div><div class="fact"><b>Docker</b><span>Containerized environments</span></div></div></div><blockquote class="quote"><p>“Good automation is quiet: it removes friction, makes information reliable, and lets people focus on the work that needs their judgment.”</p><footer>— Mohamed Soliman</footer></blockquote></div></section>
+    <section id="skills" class="skills-wrap"><div class="shell"><p class="section-label">Core expertise</p><h2 class="section-heading">Tools I use to solve real operational problems.</h2><div class="skill-grid"><article class="skill"><div class="skill-icon">01</div><h3>Oracle APEX</h3><p>Responsive applications, classic reports, and structured business interfaces.</p></article><article class="skill"><div class="skill-icon">02</div><h3>SQL &amp; Databases</h3><p>Efficient queries, data modelling, and dependable reporting foundations.</p></article><article class="skill"><div class="skill-icon">03</div><h3>Workflow Automation</h3><p>n8n workflows that connect systems and move data where it is needed.</p></article><article class="skill"><div class="skill-icon">04</div><h3>Docker</h3><p>Repeatable, container-based local environments for smoother delivery.</p></article><article class="skill"><div class="skill-icon">05</div><h3>Python</h3><p>Flexible automation steps and integrations for custom workflow needs.</p></article><article class="skill"><div class="skill-icon">06</div><h3>Networking</h3><p>Local tunnels and configuration for secure, connected development setups.</p></article></div></div></section>
+    <section id="projects"><div class="shell"><div class="projects-head"><div><p class="section-label">Selected work</p><h2 class="section-heading">Systems designed to keep teams moving.</h2></div><a class="button ghost" href="https://github.com/MoSoliman22" target="_blank" rel="noopener">Explore GitHub ↗</a></div><div class="projects"><article class="project"><span class="project-number">PROJECT 01</span><h3>Automated webhook systems</h3><p>Designed end-to-end automation pipelines in n8n, hosted in Docker environments. The workflows route real-time payloads securely through local tunnels and make integrations easier to operate.</p><div class="tags"><span class="tag">n8n</span><span class="tag">Docker</span><span class="tag">Webhooks</span><span class="tag">Automation</span></div></article><article class="project"><span class="project-number">PROJECT 02</span><h3>Oracle APEX &amp; SQL optimization</h3><p>Developed responsive Classic Reports and refined complex SQL queries to support fast data retrieval and a smoother experience inside corporate systems.</p><div class="tags"><span class="tag">Oracle APEX</span><span class="tag">SQL</span><span class="tag">Reporting</span><span class="tag">Performance</span></div></article></div></div></section>
+    <section id="contact" class="contact"><div class="shell contact-grid"><div><p class="section-label">Get in touch</p><h2>Have a system that could work smarter? Let’s build it.</h2></div><div class="contact-actions"><a class="button" href="mailto:mohamedsolimanahmed97@gmail.com">Email Mohamed</a><a class="button ghost" href="https://github.com/MoSoliman22" target="_blank" rel="noopener">GitHub ↗</a></div></div></section>
+  </main>
+  <footer><div class="shell footer-inner"><span>© 2026 Mohamed Soliman</span><span>Software Developer &amp; Automation Specialist</span></div></footer>
 </body>
 </html>
